@@ -4,7 +4,8 @@
   "description": "webpack",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --open"
+    "start": "webpack serve --open",
+    "build": "webpack --mode=production"
   },
   "keywords": [],
   "author": "Vitaly Menshikov",
