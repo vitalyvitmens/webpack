@@ -62,9 +62,30 @@ const path = require('path')
         open: true,
       },
 ) 
-9. Облегчаем запуск для этого переходим в файл package.json и добавляем
+9. npm install css-minimizer-webpack-plugin --save-dev (Но на текущий момент у нас не минифицируется CSS-код. Для этого, добавим CssMinimizerWebpackPlugin, в файл webpack.config.js добавим:
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
+и в код:
+    plugins: [
+        new MiniCssExtractPlugin()
+      ],)
+в module:
+    module: {
+        rules: [
+          {
+            test: /.css$/i,
+            use: [MiniCssExtractPlugin.loader, 'css-loader'],
+          },
+        ]
+      }
+и в код:
+    optimization: {
+        minimize: true,
+        minimizer: [new CssMinimizerPlugin(), '...'],
+      },
+10. Облегчаем запуск для этого переходим в файл package.json и добавляем
     "scripts": {
         "start": "webpack serve"
       },
 для запуска в ТЕРМИНАЛЕ пишем: npm run start
-10. Остановить: Ctrl + C
+11. Остановить: Ctrl + C
